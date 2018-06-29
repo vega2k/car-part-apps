@@ -20,7 +20,8 @@ export class CarPartsComponent implements OnInit{
     ngOnInit() {
         //this.carParts = this.racingDataService.getCarParts();
         //Observable 를 사용
-        this.racingDataService.getCarParts().subscribe(responseData => this.carParts = responseData['data']);
+        this.racingDataService.getCarParts()
+          .subscribe(responseData => this.carParts = responseData['data']);
 
         //Promise 를 사용
         //this.racingDataService.getCarPartsPromise().then(data => this.carParts = data);

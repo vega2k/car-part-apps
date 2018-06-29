@@ -25,13 +25,18 @@ export class RacingDataService {
     getCarParts():Observable<any> {
         let jsonData = this.http.get('assets/car-parts.json',{responseType: 'json'});
         jsonData.subscribe(function(data){
+          console.log(data);
            console.log(data['data']);
         });
 
-        return this.http.get('assets/car-parts.json',{responseType: 'json'});
-
-
+      return this.http.get('assets/car-parts.json',{responseType: 'json'});
+      //  return this.http.get('http://127.0.0.1:52274/products',{responseType: 'json'});
     }//getCarParts()
+
+  public createProduct(carPart:CarPart):Observable<any> {
+      alert(carPart);
+    return this.http.post("http://127.0.0.1:52274/products", carPart);
+  }
 
     private handleError(resError:Response) {
         console.log(resError);

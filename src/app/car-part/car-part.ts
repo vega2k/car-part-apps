@@ -11,4 +11,10 @@ export class CarPart {
     image:string;
     featured:boolean;
     quantity:0;
+
+    toString() {
+      return 'id :' + this.id + ' name :' + this.name + ' desc :' + this.description +
+        ' price :' + this.price + ' inStock :'+ this.inStock + ' image :'+this.image +
+        ' features :' + this.featured + ' quantity :' + this.quantity;
+    }
 }
