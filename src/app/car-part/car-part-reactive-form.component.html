@@ -1,14 +1,14 @@
 <div class="container">
-<h3 class="text-center">CarPart Registration</h3>
-<form [formGroup]="carPartForm" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+<h3 class="text-center">CarPart Registration [Reactive Form] </h3>
+<form [formGroup]="carPartForm" (ngSubmit)="onSubmit()">
 
     <table  class="table table-bordered table table-hover">
         <tr>
             <td>Id :</td>
             <td>
                 <input type="text" name="id" formControlName="id" ><br>
-                <div *ngIf="carPartForm.controls['id'].touched"  [hidden]="carPartForm.controls['id'].valid" style="alert alert-danger">
-                    Id is required
+                <div *ngIf="carPartForm.controls['id'].touched"  [hidden]="carPartForm.controls['id'].valid" nstyle="alert alert-danger">
+                    ID를 입력하세요
                 </div>
             </td>
         </tr>
@@ -17,7 +17,7 @@
             <td>
                 <input type="text" name="name"  formControlName="name" >
                 <div *ngIf="carPartForm.controls['name'].touched"  [hidden]="carPartForm.controls['name'].valid" style="alert alert-danger">
-                    Name is required
+                  이름을 입력하세요
                 </div>
             </td>
         </tr>
@@ -26,7 +26,7 @@
             <td>
                 <input type="text" name="description"  formControlName="description">
                 <div *ngIf="carPartForm.controls['description'].touched"  [hidden]="carPartForm.controls['description'].valid" style="alert alert-danger">
-                    description is required
+                  설명을 입력하세요
                 </div>
             </td>
         </tr>
@@ -34,8 +34,17 @@
             <td>price :</td>
             <td>
                 <input type="number" name="price" formControlName="price">
-                <div *ngIf="carPartForm.controls['price'].touched"  [hidden]="carPartForm.controls['price'].valid" style="alert alert-danger">
-                    price is required
+                <div *ngIf="carPartForm.controls['price'].errors && carPartForm.controls['price'].touched"
+                     [hidden]="carPartForm.controls['price'].valid" style="alert alert-danger">
+                  <div *ngIf="carPartForm.controls['price'].errors.required">
+                    가격을 입력하세요
+                  </div>
+                  <div *ngIf="carPartForm.controls['price'].errors.min">
+                    가격은 500 보다 작으면 않되요
+                  </div>
+                  <div *ngIf="carPartForm.controls['price'].errors.max">
+                    가격은 5000 보다 크면 않되요
+                  </div>
                 </div>
             </td>
         </tr>
@@ -43,9 +52,15 @@
             <td>quantity :</td>
             <td>
                 <input type="number" name="quantity"  formControlName="quantity" >
-                <div *ngIf="carPartForm.controls['quantity'].touched"  [hidden]="carPartForm.controls['quantity'].valid" style="alert alert-danger">
-                    quantity is required
+              <div *ngIf="carPartForm.controls['quantity'].errors && carPartForm.controls['quantity'].touched"
+                   [hidden]="carPartForm.controls['quantity'].valid" style="alert alert-danger">
+                <div *ngIf="carPartForm.controls['quantity'].errors.required">
+                  수량을 입력하세요
                 </div>
+                <div *ngIf="carPartForm.controls['quantity'].errors.pattern">
+                  0~9의 숫자로 입력하세요
+                </div>
+              </div>
             </td>
         </tr>
         <tr>
